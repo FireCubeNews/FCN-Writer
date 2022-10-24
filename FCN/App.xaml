@@ -1,0 +1,23 @@
+﻿<Application
+    x:Class="FCN.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FCN"    
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls" 
+    xmlns:resources="using:FCN.Resources" xmlns:helpers="using:FCN.Helpers">
+    <Application.Resources>
+        <controls:XamlControlsResources>
+            <controls:XamlControlsResources.MergedDictionaries>
+                <ResourceDictionary>
+                    <helpers:LinkToImageConverter x:Key="LinkToImage" />
+                    <helpers:Base64ToImageConverter x:Key="StringToImage" />
+                </ResourceDictionary>
+                <ResourceDictionary Source="ms-appx:///Cube.UI/Styles/GlowGradientUI.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Cube.UI/Styles/CubeUI.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Cube.UI/Styles/GlowTabs.xaml"/>
+                <resources:EditorResources/>
+            </controls:XamlControlsResources.MergedDictionaries>
+        </controls:XamlControlsResources>
+    </Application.Resources>
+
+</Application>

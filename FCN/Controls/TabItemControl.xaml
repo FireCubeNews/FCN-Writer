@@ -1,0 +1,18 @@
+﻿<controls:TabViewItem
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    x:Class="FCN.Controls.TabItemControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:icons="using:Fluent.Icons"
+    Margin="2"
+    Width="200"
+    Background="{ThemeResource 12Brush}"
+    Style="{StaticResource UndockedTabViewItemStyle}">
+    <controls:TabViewItem.Header>
+        <StackPanel Orientation="Horizontal">
+            <icons:FluentSymbolIcon x:Name="Icon" Symbol="{x:Bind SetIcon(ViewModel.Title), Mode=OneWay}"/>
+            <TextBlock Margin="7, 0, 5, 0" Text="{x:Bind ViewModel.Title, Mode=OneWay}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" MaxWidth="190"/>
+        </StackPanel>
+    </controls:TabViewItem.Header>
+    <Frame x:Name="FrameView"/>
+</controls:TabViewItem>

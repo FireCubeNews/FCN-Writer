@@ -1,0 +1,29 @@
+﻿<UserControl
+    x:Class="FCN.Controls.ImageUploaderControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FCN.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Icons="using:Fluent.Icons"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <StackPanel Spacing="12" MinWidth="200">
+        <StackPanel Orientation="Horizontal" Spacing="12">
+            <Button Click="Paste" Style="{ThemeResource ToolbarButton}" VerticalAlignment="Center" BorderThickness="1" Background="{ThemeResource MicaBrush}" BorderBrush="{ThemeResource MicaBorderBrush}">
+                <StackPanel Orientation="Horizontal">
+                    <Icons:FluentSymbolIcon Symbol="ClipboardPaste20"/>
+                    <TextBlock Margin="8, 0, 0, 0" VerticalAlignment="Center" Text="Paste"/>
+                </StackPanel>
+            </Button>
+            <TextBlock Text="or" FontSize="16" Opacity="0.7" VerticalAlignment="Center"/>
+            <Button Style="{ThemeResource ToolbarButton}" VerticalAlignment="Center" BorderThickness="1" Background="{ThemeResource MicaBrush}" BorderBrush="{ThemeResource MicaBorderBrush}">
+                <StackPanel Orientation="Horizontal">
+                    <Icons:FluentSymbolIcon Symbol="ArrowUpload20"/>
+                    <TextBlock Margin="8, 0, 0, 0" VerticalAlignment="Center" Text="Upload"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <Image x:Name="ImageView" x:FieldModifier="Public" Source="{x:Bind Image, Mode=OneWay}" Stretch="Fill" MaxHeight="{x:Bind MaxHeight, Mode=OneWay}" MaxWidth="{x:Bind MaxWidth, Mode=OneWay}"/>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,52 @@
+﻿<UserControl
+    x:Class="FCN.Controls.SettingsControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FCN.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <ScrollViewer VerticalScrollBarVisibility="Visible" VerticalScrollMode="Enabled">
+        <StackPanel Padding="24, 20, 24, 20" Width="400">
+            <Grid>
+                <StackPanel HorizontalAlignment="Left">
+                    <TextBlock FontWeight="SemiBold" FontSize="14">About</TextBlock>
+                    <TextBlock FontWeight="SemiBold" Margin="0, 12, 0, 4" FontSize="18">FCN Writer</TextBlock>
+                    <TextBlock Opacity="0.7" Text="Version 1.0"/>
+                </StackPanel>
+                <Button Click="GitHub_Click" Width="120" Height="28" Padding="4, 2, 4, 2" HorizontalAlignment="Right" Content="GitHub Repo"/>
+            </Grid>
+            <MenuFlyoutSeparator Margin="0, 12, 0, 12"/>
+            <Grid CornerRadius="4" Background="{ThemeResource LayerFillColorDefaultBrush}" Padding="8, 12, 8, 12" HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="{ThemeResource MicaBorderBrush}">
+                <StackPanel>
+                    <TextBlock FontSize="18">FCN Discord</TextBlock>
+                    <TextBlock Opacity="0.7" FontSize="12">Join to write articles</TextBlock>
+                </StackPanel>
+                <Button Width="80" Click="Discord_Click" Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Center">Join</Button>
+            </Grid>
+            <Grid CornerRadius="4" Margin="0, 8, 0, 0" Background="{ThemeResource LayerFillColorDefaultBrush}" Padding="8, 12, 8, 12" HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="{ThemeResource MicaBorderBrush}">
+                <StackPanel>
+                    <TextBlock FontSize="18">FCN Twitter</TextBlock>
+                    <TextBlock Opacity="0.7" FontSize="12">Follow for latest news</TextBlock>
+                </StackPanel>
+                <Button Width="80" Click="Twitter_Click" Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Center">Follow</Button>
+            </Grid>
+            <MenuFlyoutSeparator Margin="0, 12, 0, 12"/>
+            <TextBlock FontWeight="SemiBold" FontSize="14">Credits</TextBlock>
+            <Grid Width="300" HorizontalAlignment="Left">
+                <StackPanel Margin="0, 8, 0, 0">
+                    <TextBlock Opacity="0.7">Developer</TextBlock>
+                    <TextBlock Opacity="0.7" Margin="0, 12, 0, 0">Web Developer</TextBlock>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Right">
+                    <HyperlinkButton NavigateUri="https://twitter.com/firecubestudios" Content="FireCubeStudios"/>
+                    <HyperlinkButton NavigateUri="https://github.com/George-801" Content="TechnoBiscuit"/>
+                </StackPanel>
+                <StackPanel>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

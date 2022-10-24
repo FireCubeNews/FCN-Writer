@@ -1,0 +1,29 @@
+﻿<UserControl
+    x:Class="FCN.Controls.ProfileControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FCN.Controls"
+    xmlns:icons="using:Fluent.Icons"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:helpers="using:FCN.Helpers"
+    mc:Ignorable="d">
+    <Grid>
+        <Button Command="{x:Bind ViewModel.LogInCommand}" x:Name="LoggedOut" x:Load="{x:Bind helpers:UIHelper.Invert(ProfileService.IsLoggedIn), Mode=OneWay}" Style="{ThemeResource ToolbarButton}">
+            <StackPanel Orientation="Horizontal">
+                <icons:FluentSymbolIcon Symbol="Person20"/>
+                <TextBlock Margin="8, 0, 0, 0" VerticalAlignment="Center" Text="Log In"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="LoggedIn" x:Load="{x:Bind ProfileService.IsLoggedIn, Mode=OneWay}" Style="{ThemeResource ToolbarButton}">
+            <StackPanel Orientation="Horizontal">
+                <PersonPicture ProfilePicture="{x:Bind Profile.iconURL, Mode=OneWay}" Height="20" Width="20"/>
+                <TextBlock Margin="8, 0, 0, 0" VerticalAlignment="Center" Text="{x:Bind Profile.displayName, Mode=OneWay}"/>
+            </StackPanel>
+            <Button.Flyout>
+                <MenuFlyout Placement="Bottom">
+                    <MenuFlyoutItem Command="{x:Bind ProfileService.LogOutCommand}">Log out</MenuFlyoutItem>
+                </MenuFlyout>
+            </Button.Flyout>
+        </Button>
+    </Grid>
+</UserControl>

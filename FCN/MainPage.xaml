@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="FCN.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FCN"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls" 
+    xmlns:icons="using:Fluent.Icons" 
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" 
+    xmlns:Interactions="using:Microsoft.Xaml.Interactions.Core" 
+    xmlns:viewmodels="using:FCN.Core.ViewModels" 
+    xmlns:Fcontrols="using:FCN.Controls"
+    controls:BackdropMaterial.ApplyToRootOrPageBackground="True">
+    <controls:TabView
+            x:Name="TabView"
+            Style="{ThemeResource GlowTabView}"
+            TabCloseRequested="{x:Bind TabViewManager.RemoveRequested}"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+        TabItemsChanged="TabView_TabItemsChanged"
+            TabItemsSource="{x:Bind TabViewManager.Tabs, Mode=OneWay}">
+        <controls:TabView.TabItemTemplate>
+            <DataTemplate x:DataType="viewmodels:ArticleViewModel">
+                <Fcontrols:TabItemControl ViewModel="{x:Bind }"/>
+            </DataTemplate>
+        </controls:TabView.TabItemTemplate>
+        <controls:TabView.TabStripFooter>
+            <Grid>
+                <Button Command="{x:Bind TabViewManager.AddCommand}" HorizontalAlignment="Left" Style="{ThemeResource ToolbarButton}" Margin="4, 4, 0, 0" Canvas.ZIndex="8">
+                    <icons:FluentSymbolIcon Symbol="Add20" Margin="0, 0, 1, 0"/>
+                </Button>
+                <Grid
+            x:Name="DragArea"
+            Margin="64, 0, -64, 0"
+            Background="Transparent"/>
+            </Grid>
+        </controls:TabView.TabStripFooter>
+    </controls:TabView>
+</Page>

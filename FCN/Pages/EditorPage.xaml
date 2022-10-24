@@ -1,0 +1,65 @@
+﻿<Page
+    x:Class="FCN.Pages.EditorPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FCN.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls" 
+    xmlns:icons="using:Fluent.Icons" xmlns:helpers="using:FCN.Helpers"
+    controls:BackdropMaterial.ApplyToRootOrPageBackground="True">
+    <Grid>
+        <Grid Canvas.ZIndex="4" Margin="20, 0, 20, 0" CornerRadius="8" Height="48" VerticalAlignment="Top" Padding="12, 0, 12, 0" Background="{ThemeResource MicaBrush}" BorderThickness="1" BorderBrush="{ThemeResource MicaBorderBrush}">
+            <Grid Background="{ThemeResource MicaBlurBrush}" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                    <Button Command="{x:Bind EditorManager.AddTextCommand}" Style="{ThemeResource ToolbarButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <icons:FluentSymbolIcon Symbol="Text20"/>
+                            <TextBlock Margin="8, 0, 0, 0" VerticalAlignment="Center" Text="Add Text"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{x:Bind EditorManager.AddMarkdownCommand}" Style="{ThemeResource ToolbarButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <icons:FluentSymbolIcon Symbol="TextAsterisk20"/>
+                            <TextBlock Margin="8, 0, 0, 0" VerticalAlignment="Center" Text="Add Markdown"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{x:Bind EditorManager.AddHeaderCommand}" Style="{ThemeResource ToolbarButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <icons:FluentSymbolIcon Symbol="TextChangeCase20"/>
+                            <TextBlock Margin="8, 0, 0, 0" VerticalAlignment="Center" Text="Add Header"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{x:Bind EditorManager.AddImageCommand}" Style="{ThemeResource ToolbarButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <icons:FluentSymbolIcon Symbol="Image20"/>
+                            <TextBlock Margin="8, 0, 0, 0" VerticalAlignment="Center" Text="Add Image"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="4">
+                    <Button Command="{x:Bind EditorManager.EditPropertiesCommand}" Style="{ThemeResource ToolbarButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <icons:FluentSymbolIcon Symbol="Edit20"/>
+                            <TextBlock Margin="8, 0, 0, 0" VerticalAlignment="Center" Text="Edit"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{x:Bind EditorManager.LogInCommand}" x:Name="LogIn" x:Load="{x:Bind helpers:UIHelper.Invert(EditorManager.Profile.IsLoggedIn), Mode=OneWay}" Style="{ThemeResource ToolbarButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <icons:FluentSymbolIcon Symbol="Person20"/>
+                            <TextBlock Margin="8, 0, 0, 0" VerticalAlignment="Center" Text="Log In"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Publish" x:Load="{x:Bind EditorManager.Profile.IsLoggedIn, Mode=OneWay}" Command="{x:Bind EditorManager.EditPublishCommand}" Style="{ThemeResource ToolbarButton}" BorderThickness="1" Background="{ThemeResource MicaBrush}" BorderBrush="{ThemeResource MicaBorderBrush}">
+                        <StackPanel Orientation="Horizontal">
+                            <icons:FluentSymbolIcon Margin="0, 0, 0, 2" Symbol="Megaphone20"/>
+                            <TextBlock Margin="8, 0, 0, 0" VerticalAlignment="Center" Text="Upload Changes"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <ListView ItemsSource="{x:Bind EditorManager.Article.ArticleContents, Mode=OneWay}" ItemTemplateSelector="{StaticResource EditorItemSelector}" ItemContainerStyle="{ThemeResource ListContainer}" Margin="100, 60, 100, 0" CanReorderItems="True" ReorderMode="Enabled" AllowDrop="True"/>
+    </Grid>
+</Page>

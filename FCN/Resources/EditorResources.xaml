@@ -1,0 +1,26 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    x:Class="FCN.Resources.EditorResources"
+    xmlns:helpers="using:FCN.Helpers" 
+    xmlns:resources="using:FCN.Resources"
+    xmlns:interfaces="using:FCN.Core.Interfaces" 
+    xmlns:controls="using:FCN.Controls">
+    <helpers:EditorTemplateSelector x:Key="EditorItemSelector"
+    Text="{StaticResource TextEditorTemplate}"
+    Image="{StaticResource ImageEditorTemplate}"
+    Header="{StaticResource HeaderEditorTemplate}"
+    Markdown="{StaticResource MarkdownEditorTemplate}"/>
+    <DataTemplate x:Key="TextEditorTemplate" x:DataType="interfaces:IArticleElement">
+        <controls:WYSIWYGEditor ArticleElement="{x:Bind }"/>
+    </DataTemplate>
+    <DataTemplate x:Key="ImageEditorTemplate" x:DataType="interfaces:IArticleElement">
+        <controls:ImageEditor ArticleElement="{x:Bind }"/>
+    </DataTemplate>
+    <DataTemplate x:Key="HeaderEditorTemplate" x:DataType="interfaces:IArticleElement">
+        <controls:HeaderEditor ArticleElement="{x:Bind }"/>
+    </DataTemplate>
+    <DataTemplate x:Key="MarkdownEditorTemplate" x:DataType="interfaces:IArticleElement">
+        <controls:MarkdownEditor ArticleElement="{x:Bind }"/>
+    </DataTemplate>
+</ResourceDictionary>
