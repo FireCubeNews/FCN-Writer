@@ -64,9 +64,12 @@ namespace FCN.Core.ViewModels
 
         public void OpenArticle(IPublishedArticle Article)
         {
-            ProjectArticle Project = ArticleHelper.ConvertToProject(Article, Profile.GetKey());
-            WeakReferenceMessenger.Default.Send(new ArticleUpdatedMessage(Project), Token);
-            WeakReferenceMessenger.Default.Send(new NavigateMessage(NavigationEnum.Open), Token);
+            if (Profile.IsLoggedIn)
+            {
+                ProjectArticle Project = ArticleHelper.ConvertToProject(Article, Profile.GetKey());
+                WeakReferenceMessenger.Default.Send(new ArticleUpdatedMessage(Project), Token);
+                WeakReferenceMessenger.Default.Send(new NavigateMessage(NavigationEnum.Open), Token);
+            }
         }
 
         private AsyncRelayCommand? loadArticlesCommand;

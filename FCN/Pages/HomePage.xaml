@@ -46,7 +46,7 @@
                 </Button>
             </StackPanel>
         </Grid>
-        <GridView x:Name="ArticlesView" ItemClick="ArticlesView_ItemClick" IsItemClickEnabled="True" ItemContainerStyle="{ThemeResource CardContainer}" ItemsSource="{x:Bind HomeManager.UserArticles, Mode=OneWay}" SelectionMode="Single" VerticalAlignment="Top" Margin="0, 86, 0, 0" HorizontalAlignment="Left">
+        <GridView x:Name="ArticlesView" x:Load="{x:Bind HomeManager.Profile.IsLoggedIn, Mode=OneWay}" ItemClick="ArticlesView_ItemClick" IsItemClickEnabled="True" ItemContainerStyle="{ThemeResource CardContainer}" ItemsSource="{x:Bind HomeManager.UserArticles, Mode=OneWay}" SelectionMode="Single" VerticalAlignment="Top" Margin="0, 86, 0, 0" HorizontalAlignment="Left">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="classes:PublishedPreviewArticle">
                     <Grid Height="400" Width="380" CornerRadius="8">
@@ -69,7 +69,7 @@
                                 <PersonPicture ProfilePicture="{x:Bind author.iconURL, Mode=OneWay}" Height="30" Width="30"/>
                                 <StackPanel Margin="8, 4, 4, 4">
                                     <TextBlock Margin="4, 4, 4, 0" FontWeight="SemiBold" Text="{x:Bind author.displayName}"/>
-                                    <TextBlock Margin="4" Opacity="0.7" VerticalAlignment="Center" FontSize="12" Text="{x:Bind time}"/>
+                                    <TextBlock Margin="4" Opacity="0.7" VerticalAlignment="Center" FontSize="12" Text="{x:Bind helpers:UIHelper.FormatTime(time), Mode=OneWay}"/>
                                 </StackPanel>
                             </StackPanel>
                             <Grid HorizontalAlignment="Right" VerticalAlignment="Center">

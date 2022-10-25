@@ -5,60 +5,14 @@
     <LangVersion>9.0</LangVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>C:\Users\ayush\source\repos\FCN\FCN.Core</OutputPath>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Include="Classes\Article.cs" />
-    <Compile Include="Classes\PublishedArticle.cs" />
-    <Compile Include="Helpers\ArticleHelper.cs" />
-    <Compile Include="Helpers\UriHelper.cs" />
-    <Compile Include="Interfaces\IArticlesService.cs" />
-    <Compile Include="Interfaces\IProfileService.cs" />
-    <Compile Include="Interfaces\IPublisherService.cs" />
-    <Compile Include="Messages\ArticleUpdatedMessage.cs" />
-    <Compile Include="Classes\Author.cs" />
-    <Compile Include="Classes\ProjectArticle.cs" />
-    <Compile Include="Classes\HeaderElement.cs" />
-    <Compile Include="Enums\HeaderEnum.cs" />
-    <Compile Include="Classes\ImageElement.cs" />
-    <Compile Include="Classes\MarkdownElement.cs" />
-    <Compile Include="Messages\NavigateMessage.cs" />
-    <Compile Include="Enums\NavigationEnum.cs" />
-    <Compile Include="Classes\PublishedPreviewArticle.cs" />
-    <Compile Include="Messages\RequestArticleMessage.cs" />
-    <Compile Include="Classes\TextElement.cs" />
-    <Compile Include="Helpers\MarkdownHelper.cs" />
-    <Compile Include="Helpers\PublisherHelper.cs" />
-    <Compile Include="Interfaces\IArticle.cs" />
-    <Compile Include="Interfaces\IArticleElement.cs" />
-    <Compile Include="Interfaces\IAuthor.cs" />
-    <Compile Include="Interfaces\IEditor.cs" />
-    <Compile Include="Interfaces\INavigationService.cs" />
-    <Compile Include="Interfaces\IProjectArticle.cs" />
-    <Compile Include="Interfaces\IPublishedArticle.cs" />
-    <Compile Include="Services\ArticlesService.cs" />
-    <Compile Include="Services\PublisherService.cs" />
-    <Compile Include="ViewModels\ArticlePropertyViewModel.cs" />
-    <Compile Include="ViewModels\ArticleViewModel.cs" />
-    <Compile Include="ViewModels\EditorViewModel.cs" />
-    <Compile Include="ViewModels\HomeViewModel.cs" />
-    <Compile Include="ViewModels\LogInViewModel.cs" />
-    <Compile Include="ViewModels\PublisherViewModel.cs" />
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="BracketPipe" Version="0.7.7232.28997" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="RestSharp" Version="108.0.2" />
     <PackageReference Include="RtfPipe" Version="2.0.7677.4303" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Utilities\" />
   </ItemGroup>
 
 </Project>

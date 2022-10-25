@@ -32,12 +32,14 @@
                                 <TextBox Text="{x:Bind ArticleProperties.Article.description, Mode=TwoWay}" PlaceholderText="Article Description" AcceptsReturn="True" Style="{ThemeResource GlowTextBox}" MinHeight="20" Width="340" />
                             </toolkit:DropShadowPanel>
                             <TextBlock FontWeight="SemiBold">Tags:</TextBlock>
-                            <toolkit:TokenizingTextBox x:Name="Tags" CornerRadius="8" BorderThickness="0" Background="{ThemeResource SortHvidBrush}" TokenItemAdded="Tags_TokenItemAdded" Height="60" Width="340"/>
+                            <toolkit:DropShadowPanel ShadowOpacity="0.1" Color="Black" OffsetX="4" CornerRadius="8" OffsetY="10">
+                                <toolkit:TokenizingTextBox x:Name="Tags" CornerRadius="8" BorderThickness="0" Background="{ThemeResource SortHvidBrush}" TokenItemAdded="Tags_TokenItemAdded" MaxHeight="260" Width="340"/>
+                            </toolkit:DropShadowPanel>
                         </StackPanel>
                         <StackPanel Margin="16, 0, 16, 0">
                             <TextBlock FontWeight="SemiBold">Image:</TextBlock>
                             <toolkit:DropShadowPanel ShadowOpacity="0.4" OffsetX="4" CornerRadius="8" Margin="0, 12, 0, 16" OffsetY="4">
-                                <TextBox x:Name="ImageLink" Text="{x:Bind ArticleProperties.Article.headerImage, Mode=TwoWay}" TextChanged="ImageLink_TextChanged" MinWidth="300" MaxWidth="400" Height="20" PlaceholderText="https://discord.com/cdn.png" Style="{ThemeResource GlowTextBox}"/>
+                                <TextBox x:Name="ImageLink" Text="{x:Bind ArticleProperties.Article.headerImage, Mode=TwoWay}" TextChanged="ImageLink_TextChanged"  MinHeight="20" Width="340" PlaceholderText="https://discord.com/cdn.png" Style="{ThemeResource GlowTextBox}"/>
                             </toolkit:DropShadowPanel>
                             <Image Source="{x:Bind Preview, Mode=OneWay}" MaxHeight="400" MaxWidth="400"/>
                             <!--Image="{x:Bind ArticleProperties.Article.headerImage, Mode=TwoWay, Converter={StaticResource StringToImage}}"-->

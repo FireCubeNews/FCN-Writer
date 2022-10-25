@@ -17,6 +17,14 @@
             <Button x:Name="Redo" Click="Redo_Click" Style="{ThemeResource ToolbarButton}">
                 <icons:FluentSymbolIcon Symbol="ArrowRedo20"/>
             </Button>
+          <!--  <AppBarSeparator/>
+            <Button x:Name="Bold" Style="{ThemeResource ToolbarButton}">
+                <icons:FluentSymbolIcon Symbol="TextBold20" Margin="0, 0, 2, 0"/>
+            </Button>
+            <Button x:Name="Italy" Style="{ThemeResource ToolbarButton}">
+                <icons:FluentSymbolIcon Symbol="TextItalic20"/>
+            </Button>-->
+            <AppBarSeparator/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <RichEditBox x:Name="Editor" MinHeight="400" MinWidth="600" BorderThickness="0, 1, 1, 0" Style="{ThemeResource QuickRichEditBox}" TextChanged="Editor_TextChanged"/>
