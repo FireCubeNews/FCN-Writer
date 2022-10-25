@@ -24,10 +24,10 @@ namespace FCN.Controls
 
         private IAsyncOperation<bool> OpenLink(string linkUrl) => Launcher.LaunchUriAsync(new Uri(linkUrl));
 
-        private async void GitHub_Click(object sender, RoutedEventArgs e) => await OpenLink("https://github.com/FireCubeStudios/Protecc");
+        private async void GitHub_Click(object sender, RoutedEventArgs e) => await OpenLink("https://github.com/FireCubeNews/FCN-Writer");
 
-        private async void Discord_Click(object sender, RoutedEventArgs e) => await OpenLink("https://discord.gg/3WYcKat");
+        private async void Discord_Click(object sender, RoutedEventArgs e) => await OpenLink("https://discord.com/invite/cj4gM8VdeF");
 
-        private async void Twitter_Click(object sender, RoutedEventArgs e) => await OpenLink("https://twitter.com/FireCubeStudios");
+        private async void Twitter_Click(object sender, RoutedEventArgs e) => await OpenLink("https://twitter.com/FireCubeNews");
     }
 }

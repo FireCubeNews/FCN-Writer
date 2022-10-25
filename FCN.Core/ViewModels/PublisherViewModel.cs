@@ -9,6 +9,7 @@ using FCN.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FCN.Core.ViewModels
 {
@@ -36,11 +37,12 @@ namespace FCN.Core.ViewModels
         public IRelayCommand EditArticleCommand => editArticleCommand ??= new RelayCommand(EditArticle);
         private void EditArticle() => WeakReferenceMessenger.Default.Send(new NavigateMessage(NavigationEnum.Edit), Token);
 
-        private RelayCommand? uploadArticleCommand;
-        public IRelayCommand UploadArticleCommand => uploadArticleCommand ??= new RelayCommand(UploadArticle);
-        private void UploadArticle()
+        private AsyncRelayCommand? uploadArticleCommand;
+        public IAsyncRelayCommand UploadArticleCommand => uploadArticleCommand ??= new AsyncRelayCommand(UploadArticleAsync);
+        private async Task UploadArticleAsync()
         {
-            PublisherHelper.Publish(Article);
+            if(await PublisherHelper.PublishAsync(Article))
+                WeakReferenceMessenger.Default.Send(new NavigateMessage(NavigationEnum.Home), Token);
         }
     }
 }

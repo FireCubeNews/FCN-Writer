@@ -12,6 +12,7 @@
     xmlns:Icons="using:Fluent.Icons" 
     xmlns:Materials="using:Cube.UI.Materials" 
     xmlns:Fcontrols="using:FCN.Controls"
+    xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
     controls:BackdropMaterial.ApplyToRootOrPageBackground="True">
     <Grid>
         <toolkit:DropShadowPanel Canvas.ZIndex="3" ShadowOpacity="0.4" OffsetX="4" CornerRadius="8" OffsetY="4" HorizontalAlignment="center" VerticalAlignment="Center">
@@ -31,7 +32,7 @@
                                 <TextBox Text="{x:Bind ArticleProperties.Article.description, Mode=TwoWay}" PlaceholderText="Article Description" AcceptsReturn="True" Style="{ThemeResource GlowTextBox}" MinHeight="20" Width="340" />
                             </toolkit:DropShadowPanel>
                             <TextBlock FontWeight="SemiBold">Tags:</TextBlock>
-                            <toolkit:TokenizingTextBox x:Name="Tags" TokenItemAdded="Tags_TokenItemAdded" Height="60" Width="340"/>
+                            <toolkit:TokenizingTextBox x:Name="Tags" CornerRadius="8" BorderThickness="0" Background="{ThemeResource SortHvidBrush}" TokenItemAdded="Tags_TokenItemAdded" Height="60" Width="340"/>
                         </StackPanel>
                         <StackPanel Margin="16, 0, 16, 0">
                             <TextBlock FontWeight="SemiBold">Image:</TextBlock>

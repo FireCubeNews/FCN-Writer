@@ -32,10 +32,11 @@ namespace FCN.Pages
             this.InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             HomeManager.Token = (int)e.Parameter; // Truly cursed
+         //   await HomeManager.LoadArticlesCommand.ExecuteAsync(this);
         }
 
         private void ArticlesView_ItemClick(object sender, ItemClickEventArgs e) => HomeManager.OpenArticle(e.ClickedItem as IPublishedArticle);

@@ -69,5 +69,31 @@ namespace FCN.Core.ViewModels
             WeakReferenceMessenger.Default.Send(new NavigateMessage(NavigationEnum.Open), Token);
         }
 
+        private AsyncRelayCommand? loadArticlesCommand;
+        public IAsyncRelayCommand LoadArticlesCommand => loadArticlesCommand ??= new AsyncRelayCommand(LoadArticlesAsync);
+        public async Task LoadArticlesAsync()
+        {
+            await Task.Run(() =>
+            {
+                if (Profile.IsLoggedIn)
+                {
+                    var client = new RestClient(baseUrl: UriHelper.GetPostsUri);
+                    var request = new RestRequest();
+                    request.Method = Method.Get;
+                    request.AddHeader("x-api-key", Profile.GetKey());
+                    RestResponse response = client.Execute(request);
+                    if (response.IsSuccessful)
+                        UserArticles = JsonConvert.DeserializeObject<ObservableCollection<PublishedPreviewArticle>>(response.Content);
+                    else
+                    {
+                        Debug.WriteLine("error msg: " + response.ErrorMessage);
+                        Debug.WriteLine("status code: " + response.StatusCode);
+                        Debug.WriteLine("status description: " + response.StatusDescription);
+                        Debug.WriteLine("response: " + response.Content);
+                        Debug.WriteLine(response.ErrorMessage);
+                    }
+                }
+            });
+        }
     }
 }

@@ -54,7 +54,7 @@
                             <Image Source="{x:Bind helpers:UIHelper.SanitizeUri(headerImage), Mode=OneWay}" VerticalAlignment="Top" Height="200" Stretch="Uniform"/>
                             <TextBlock Margin="24, 8, 12, 4" FontSize="18" MaxHeight="80" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" TextWrapping="WrapWholeWords" Text="{x:Bind title}"/>
                             <TextBlock Margin="24, 0, 12, 4" Opacity="0.7" MaxHeight="80" FontSize="14" TextTrimming="CharacterEllipsis" TextWrapping="WrapWholeWords" Text="{x:Bind description}"/>
-                            <GridView ItemsSource="{x:Bind tags, Mode=OneWay}" SelectionMode="None" ItemContainerStyle="{ThemeResource CardContainer}">
+                            <GridView Margin="8, 0, 0, 4" ItemsSource="{x:Bind tags, Mode=OneWay}" SelectionMode="None" ItemContainerStyle="{ThemeResource CardContainer}">
                                 <GridView.ItemTemplate>
                                     <DataTemplate x:DataType="x:String">
                                         <Grid Padding="4, 2, 4, 2">
@@ -95,5 +95,6 @@
             </GridView.ItemContainerTransitions>
 
         </GridView>
+        <controls:ProgressRing  IsActive="{x:Bind HomeManager.LoadArticlesCommand.IsRunning, Mode=OneWay}" Height="40" Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.ZIndex="2"/>
     </Grid>
 </Page>

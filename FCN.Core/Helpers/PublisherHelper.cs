@@ -6,6 +6,7 @@ using System.Text;
 using Newtonsoft.Json;
 using FCN.Core.Classes;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace FCN.Core.Helpers
 {
@@ -13,43 +14,41 @@ namespace FCN.Core.Helpers
     {
         static readonly string ApiKey = "2rhiF+hTCwiksglq";
         static Uri ApiUrl = new Uri("https://fcn.technobiscuit.uk/api/v1/posts/create");
+        static Uri EditApiUrl = new Uri("https://fcn.technobiscuit.uk/api/v1/posts/");
 
-        public static PublishedArticle? Publish(IProjectArticle Article)
+        public static async Task<bool> PublishAsync(IProjectArticle Article)
         {
-            ProjectArticle article = Article as ProjectArticle;
-            Article a = new();
-            a.title = article.title;
-            a.description = article.description;
-            a.headerImage = article.headerImage;
-            StringBuilder content = new();
-            foreach(IArticleElement Element in article.ArticleContents)
-            {
-                content.AppendLine(Element.GetRawText());
-            }
-            a.content = content.ToString();
-            a.published = article.published;
-            a.tags = Article.tags;
-            var client = new RestClient(baseUrl: ApiUrl);
-            var request = new RestRequest();
-            request.Method = Method.Post;
-            request.AddHeader("x-api-key", ApiKey);
-            request.AddParameter("application/json", JsonConvert.SerializeObject(a), ParameterType.RequestBody);
-            var response = client.Execute(request);
-            if (response.IsSuccessful)
-            {
-                PublishedArticle p = JsonConvert.DeserializeObject<PublishedArticle>(response.Content);
-                article.ProjectId = p.id;
-                return p;
-            }
-            else
-            {
-                Debug.WriteLine("error msg: " + response.ErrorMessage);
-                Debug.WriteLine("status code: " + response.StatusCode);
-                Debug.WriteLine("status description: " + response.StatusDescription);
-                Debug.WriteLine("response: " + response.Content);
-                Debug.WriteLine(response.ErrorMessage);
-                return null;
-            }
+            RestResponse response = new();
+            await Task.Run(() => {
+                ProjectArticle article = Article as ProjectArticle;
+                Article a = new();
+                a.title = article.title;
+                a.description = article.description;
+                a.headerImage = article.headerImage;
+                StringBuilder content = new();
+                foreach (IArticleElement Element in article.ArticleContents)
+                {
+                    content.AppendLine(Element.GetRawText());
+                }
+                a.content = content.ToString();
+                a.published = article.published;
+                a.tags = Article.tags;
+                RestClient client = Article.IsUploaded ? new RestClient(baseUrl: EditApiUrl + Article.ProjectId) : new RestClient(baseUrl: ApiUrl);
+                var request = new RestRequest();
+                request.Method = Article.IsUploaded ? Method.Patch : Method.Post;
+                request.AddHeader("x-api-key", ApiKey);
+                request.AddParameter("application/json", JsonConvert.SerializeObject(a), ParameterType.RequestBody);
+                response = client.Execute(request);
+                if (!response.IsSuccessful)
+                {
+                    Debug.WriteLine("error msg: " + response.ErrorMessage);
+                    Debug.WriteLine("status code: " + response.StatusCode);
+                    Debug.WriteLine("status description: " + response.StatusDescription);
+                    Debug.WriteLine("response: " + response.Content);
+                    Debug.WriteLine(response.ErrorMessage);
+                }
+            });
+            return response.IsSuccessful;
         }
     }
 }

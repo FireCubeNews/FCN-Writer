@@ -59,6 +59,7 @@ namespace FCN.Core.ViewModels
                     Article = new ProjectArticle();
                     Article.ArticleContents = new();
                     Article.tags = new();
+                    Article.IsUploaded = false;
                     Article.published = false;
                     NavigationService.NavigateTo<ArticlePropertyViewModel>(Token);
                     Title = "New Article";
