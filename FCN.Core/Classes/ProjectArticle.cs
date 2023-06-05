@@ -1,4 +1,5 @@
-﻿using FCN.Core.Interfaces;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using FCN.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,7 +8,8 @@ using System.Text;
 
 namespace FCN.Core.Classes
 {
-    public class ProjectArticle : IProjectArticle
+    [ObservableObject]
+    public partial class ProjectArticle : IProjectArticle
     {
         public string title { get; set; }
         public string description { get; set; }

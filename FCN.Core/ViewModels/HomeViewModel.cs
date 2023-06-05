@@ -29,7 +29,9 @@ namespace FCN.Core.ViewModels
 
         public IProfileService Profile;
 
-        public ObservableCollection<PublishedPreviewArticle> UserArticles = new();
+        public ObservableCollection<PublishedPreviewArticle> PublishedUserArticles = new();
+
+        public ObservableCollection<PublishedPreviewArticle> UnpublishedUserArticles = new();
 
         public HomeViewModel(IProfileService ProfileService)
         {
@@ -42,7 +44,15 @@ namespace FCN.Core.ViewModels
                 request.AddHeader("x-api-key", Profile.GetKey());
                 RestResponse response = client.Execute(request);
                 if (response.IsSuccessful)
-                    UserArticles = JsonConvert.DeserializeObject<ObservableCollection<PublishedPreviewArticle>>(response.Content);
+                {
+                    foreach(var article in JsonConvert.DeserializeObject<ObservableCollection<PublishedPreviewArticle>>(response.Content))
+                    {
+                        if (article.published)
+                            PublishedUserArticles.Add(article);
+                        else
+                            UnpublishedUserArticles.Add(article);
+                    }
+                }
                 else
                 {
                     Debug.WriteLine("error msg: " + response.ErrorMessage);
@@ -86,7 +96,15 @@ namespace FCN.Core.ViewModels
                     request.AddHeader("x-api-key", Profile.GetKey());
                     RestResponse response = client.Execute(request);
                     if (response.IsSuccessful)
-                        UserArticles = JsonConvert.DeserializeObject<ObservableCollection<PublishedPreviewArticle>>(response.Content);
+                    {
+                        foreach (var article in JsonConvert.DeserializeObject<ObservableCollection<PublishedPreviewArticle>>(response.Content))
+                        {
+                            if (article.published)
+                                PublishedUserArticles.Add(article);
+                            else
+                                UnpublishedUserArticles.Add(article);
+                        }
+                    }
                     else
                     {
                         Debug.WriteLine("error msg: " + response.ErrorMessage);

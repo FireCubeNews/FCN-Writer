@@ -12,14 +12,13 @@ namespace FCN.Core.Helpers
 {
     public class PublisherHelper
     {
-        static readonly string ApiKey = "2rhiF+hTCwiksglq";
-        static Uri ApiUrl = new Uri("https://fcn.technobiscuit.uk/api/v1/posts/create");
-        static Uri EditApiUrl = new Uri("https://fcn.technobiscuit.uk/api/v1/posts/");
+        static Uri ApiUrl = new Uri("https://firecube.news/api/v1/posts/create");
+        static Uri EditApiUrl = new Uri("https://firecube.news/api/v1/posts/");
 
-        public static async Task<bool> PublishAsync(IProjectArticle Article)
+        public static async Task<bool> PublishAsync(IProjectArticle Article, string ApiKey)
         {
             RestResponse response = new();
-            await Task.Run(() => {
+            await Task.Run(() => { // Cursed
                 ProjectArticle article = Article as ProjectArticle;
                 Article a = new();
                 a.title = article.title;
@@ -33,6 +32,7 @@ namespace FCN.Core.Helpers
                 a.content = content.ToString();
                 a.published = article.published;
                 a.tags = Article.tags;
+                Debug.WriteLine(Article.ProjectId);
                 RestClient client = Article.IsUploaded ? new RestClient(baseUrl: EditApiUrl + Article.ProjectId) : new RestClient(baseUrl: ApiUrl);
                 var request = new RestRequest();
                 request.Method = Article.IsUploaded ? Method.Patch : Method.Post;

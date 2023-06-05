@@ -1,4 +1,5 @@
 ﻿using FCN.Core.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,7 +27,7 @@ namespace FCN.Pages
         PublisherViewModel PublisherManager;
         public PublisherPage()
         {
-            PublisherManager = new();
+            PublisherManager = App.Current.Services.GetService<PublisherViewModel>();
             this.InitializeComponent();
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)

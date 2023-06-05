@@ -14,9 +14,9 @@
                 <StackPanel HorizontalAlignment="Left">
                     <TextBlock FontWeight="SemiBold" FontSize="14">About</TextBlock>
                     <TextBlock FontWeight="SemiBold" Margin="0, 12, 0, 4" FontSize="18">FCN Writer</TextBlock>
-                    <TextBlock Opacity="0.7" Text="Version 1.0"/>
+                    <TextBlock Opacity="0.7" Text="Version 1.1"/>
                 </StackPanel>
-                <Button Click="GitHub_Click" Width="120" Height="28" Padding="4, 2, 4, 2" HorizontalAlignment="Right" Content="GitHub Repo"/>
+                <Button Click="GitHub_Click" Width="120" Height="28" Padding="4, 2, 4, 2" Style="{ThemeResource ToolbarButton}" BorderThickness="1" BorderBrush="{ThemeResource MicaBorderBrush}" HorizontalAlignment="Right" Content="GitHub Repo"/>
             </Grid>
             <MenuFlyoutSeparator Margin="0, 12, 0, 12"/>
             <Grid CornerRadius="4" Background="{ThemeResource LayerFillColorDefaultBrush}" Padding="8, 12, 8, 12" HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="{ThemeResource MicaBorderBrush}">
@@ -24,14 +24,14 @@
                     <TextBlock FontSize="18">FCN Discord</TextBlock>
                     <TextBlock Opacity="0.7" FontSize="12">Join to write articles</TextBlock>
                 </StackPanel>
-                <Button Width="80" Click="Discord_Click" Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Center">Join</Button>
+                <Button Width="80" Click="Discord_Click" Style="{ThemeResource ToolbarButton}" BorderThickness="1" BorderBrush="{ThemeResource MicaBorderBrush}" HorizontalAlignment="Right" VerticalAlignment="Center">Join</Button>
             </Grid>
             <Grid CornerRadius="4" Margin="0, 8, 0, 0" Background="{ThemeResource LayerFillColorDefaultBrush}" Padding="8, 12, 8, 12" HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="{ThemeResource MicaBorderBrush}">
                 <StackPanel>
                     <TextBlock FontSize="18">FCN Twitter</TextBlock>
                     <TextBlock Opacity="0.7" FontSize="12">Follow for latest news</TextBlock>
                 </StackPanel>
-                <Button Width="80" Click="Twitter_Click" Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Center">Follow</Button>
+                <Button Width="80" Click="Twitter_Click" Style="{ThemeResource ToolbarButton}" BorderThickness="1" BorderBrush="{ThemeResource MicaBorderBrush}" HorizontalAlignment="Right" VerticalAlignment="Center">Follow</Button>
             </Grid>
             <MenuFlyoutSeparator Margin="0, 12, 0, 12"/>
             <TextBlock FontWeight="SemiBold" FontSize="14">Credits</TextBlock>
@@ -42,7 +42,7 @@
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Right">
                     <HyperlinkButton NavigateUri="https://twitter.com/firecubestudios" Content="FireCubeStudios"/>
-                    <HyperlinkButton NavigateUri="https://github.com/George-801" Content="TechnoBiscuit"/>
+                    <HyperlinkButton NavigateUri="https://technobiscuit.uk/" Content="TechnoBiscuit"/>
                 </StackPanel>
                 <StackPanel>
                 </StackPanel>

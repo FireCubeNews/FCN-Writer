@@ -9,7 +9,7 @@
   <Identity
     Name="2505FireCubeStudios.FCNforWriters"
     Publisher="CN=3C7C8FC9-7104-4B33-8730-EE1E929D5D3B"
-    Version="1.0.3.0" />
+    Version="1.1.5.0" />
 
   <mp:PhoneIdentity PhoneProductId="4959ed15-c705-4ae5-a46d-c5284a3b5f58" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

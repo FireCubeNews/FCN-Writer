@@ -77,5 +77,7 @@ namespace FCN.Pages
             if(!ArticleProperties.Article.tags.Contains((string)args))
                 ArticleProperties.Article.tags.Add((string)args);
         }
+
+        private void Tag_Click(object sender, RoutedEventArgs e) => Tags.AddTokenItem((string)((sender as Button).Content));
     }
 }

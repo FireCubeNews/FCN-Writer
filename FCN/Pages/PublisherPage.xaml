@@ -20,7 +20,7 @@
                     <TextBlock Text="Upload changes?" FontSize="24" FontWeight="SemiBold"/>
                     <TextBlock Text="{x:Bind PublisherManager.Article.title, Mode=OneWay}" FontSize="16" FontWeight="SemiBold" Opacity="0.7">Publishing mode:</TextBlock>
                     <TextBlock FontWeight="SemiBold">Publishing mode:</TextBlock>
-                    <ToggleSwitch IsOn="{x:Bind PublisherManager.Article.published, Mode=TwoWay}" Style="{ThemeResource GlowSwitch}" OnContent="Publish" OffContent="Unpublish"/>
+                    <ToggleSwitch IsOn="{x:Bind PublisherManager.Article.published, Mode=TwoWay}" Style="{ThemeResource GlowSwitch}" OnContent="Public" OffContent="Private"/>
                     <Button Command="{x:Bind PublisherManager.UploadArticleCommand}" Style="{ThemeResource ToolbarButton}" BorderThickness="1" Background="{ThemeResource MicaBrush}" BorderBrush="{ThemeResource MicaBorderBrush}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20, 24, 0, 0">
                         <StackPanel Orientation="Horizontal">
                             <Icons:FluentSymbolIcon Symbol="ArrowUpload20"/>

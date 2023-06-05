@@ -26,6 +26,13 @@ namespace FCN.Core.ViewModels
             }
         }
 
+        public IProfileService Profile;
+
+        public PublisherViewModel(IProfileService ProfileService)
+        {
+            Profile = ProfileService;
+        }
+
         private IProjectArticle? article;
         public IProjectArticle? Article
         {
@@ -41,7 +48,7 @@ namespace FCN.Core.ViewModels
         public IAsyncRelayCommand UploadArticleCommand => uploadArticleCommand ??= new AsyncRelayCommand(UploadArticleAsync);
         private async Task UploadArticleAsync()
         {
-            if(await PublisherHelper.PublishAsync(Article))
+            if(await PublisherHelper.PublishAsync(Article, Profile.GetKey()))
                 WeakReferenceMessenger.Default.Send(new NavigateMessage(NavigationEnum.Home), Token);
         }
     }

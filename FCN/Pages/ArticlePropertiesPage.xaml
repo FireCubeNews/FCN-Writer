@@ -35,6 +35,11 @@
                             <toolkit:DropShadowPanel ShadowOpacity="0.1" Color="Black" OffsetX="4" CornerRadius="8" OffsetY="10">
                                 <toolkit:TokenizingTextBox x:Name="Tags" CornerRadius="8" BorderThickness="0" Background="{ThemeResource SortHvidBrush}" TokenItemAdded="Tags_TokenItemAdded" MaxHeight="260" Width="340"/>
                             </toolkit:DropShadowPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="8" Margin="0, 12, 0, 16">
+                                <Button Content="Windows" Style="{ThemeResource ToolbarButton}" BorderThickness="1" BorderBrush="{ThemeResource MicaBorderBrush}" Click="Tag_Click"/>
+                                <Button Content="Surface" Style="{ThemeResource ToolbarButton}" BorderThickness="1" BorderBrush="{ThemeResource MicaBorderBrush}" Click="Tag_Click"/>
+                                <Button Content="Opinion" Style="{ThemeResource ToolbarButton}" BorderThickness="1" BorderBrush="{ThemeResource MicaBorderBrush}" Click="Tag_Click"/>
+                            </StackPanel>
                         </StackPanel>
                         <StackPanel Margin="16, 0, 16, 0">
                             <TextBlock FontWeight="SemiBold">Image:</TextBlock>

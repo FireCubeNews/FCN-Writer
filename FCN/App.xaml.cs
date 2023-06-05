@@ -55,6 +55,7 @@ namespace FCN
             services.AddTransient<HomeViewModel>();
             services.AddTransient<LogInViewModel>();
             services.AddTransient<EditorViewModel>();
+            services.AddTransient<PublisherViewModel>();
 
             return services.BuildServiceProvider();
         }

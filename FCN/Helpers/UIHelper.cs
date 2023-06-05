@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +12,13 @@ namespace FCN.Helpers
     {
         public static bool Invert(bool boolean) => !boolean;
 
-        public static string FormatTime(long ms)  =>  new DateTime(1970, 1, 1).AddMilliseconds(ms).ToString("MMM dd, yyyy"); // ms is milliseconds from 1st jan 1970
+        //  public static string FormatTime(long ms)  =>  new DateTime(1970, 1, 1).AddMilliseconds(ms).ToString("MMM dd, yyyy"); // ms is milliseconds from 1st jan 1970
 
+        public static string FormatTime(long ms)
+        {
+            Debug.WriteLine(ms);
+            return new DateTime(1970, 1, 1).AddMilliseconds(ms).ToString("MMM dd, yyyy");
+        }
         public static BitmapImage SanitizeUri(string Uri)
         {
             BitmapImage Bitmap = new();

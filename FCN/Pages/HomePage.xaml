@@ -40,61 +40,115 @@
                 <Button Style="{ThemeResource SettingsToolbarButton}">
                     <Button.Flyout>
                         <Flyout Placement="Bottom" FlyoutPresenterStyle="{ThemeResource MicaFlyoutStyle}">
-                           <Fcontrols:SettingsControl/>
+                            <Fcontrols:SettingsControl/>
                         </Flyout>
                     </Button.Flyout>
                 </Button>
             </StackPanel>
         </Grid>
-        <GridView x:Name="ArticlesView" x:Load="{x:Bind HomeManager.Profile.IsLoggedIn, Mode=OneWay}" ItemClick="ArticlesView_ItemClick" IsItemClickEnabled="True" ItemContainerStyle="{ThemeResource CardContainer}" ItemsSource="{x:Bind HomeManager.UserArticles, Mode=OneWay}" SelectionMode="Single" VerticalAlignment="Top" Margin="0, 86, 0, 0" HorizontalAlignment="Left">
-            <GridView.ItemTemplate>
-                <DataTemplate x:DataType="classes:PublishedPreviewArticle">
-                    <Grid Height="400" Width="380" CornerRadius="8">
-                        <StackPanel VerticalAlignment="Top">
-                            <Image Source="{x:Bind helpers:UIHelper.SanitizeUri(headerImage), Mode=OneWay}" VerticalAlignment="Top" Height="200" Stretch="Uniform"/>
-                            <TextBlock Margin="24, 8, 12, 4" FontSize="18" MaxHeight="80" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" TextWrapping="WrapWholeWords" Text="{x:Bind title}"/>
-                            <TextBlock Margin="24, 0, 12, 4" Opacity="0.7" MaxHeight="80" FontSize="14" TextTrimming="CharacterEllipsis" TextWrapping="WrapWholeWords" Text="{x:Bind description}"/>
-                            <GridView Margin="8, 0, 0, 4" ItemsSource="{x:Bind tags, Mode=OneWay}" SelectionMode="None" ItemContainerStyle="{ThemeResource CardContainer}">
-                                <GridView.ItemTemplate>
-                                    <DataTemplate x:DataType="x:String">
-                                        <Grid Padding="4, 2, 4, 2">
-                                            <TextBlock Text="{x:Bind }"/>
-                                        </Grid>
-                                    </DataTemplate>
-                                </GridView.ItemTemplate>
-                            </GridView>
-                        </StackPanel>
-                        <Grid Background="{ThemeResource MicaDarkBrush}" VerticalAlignment="Bottom" Padding="24, 0, 12, 0">
-                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                                <PersonPicture ProfilePicture="{x:Bind author.iconURL, Mode=OneWay}" Height="30" Width="30"/>
-                                <StackPanel Margin="8, 4, 4, 4">
-                                    <TextBlock Margin="4, 4, 4, 0" FontWeight="SemiBold" Text="{x:Bind author.displayName}"/>
-                                    <TextBlock Margin="4" Opacity="0.7" VerticalAlignment="Center" FontSize="12" Text="{x:Bind helpers:UIHelper.FormatTime(time), Mode=OneWay}"/>
-                                </StackPanel>
+        <ScrollViewer VerticalScrollMode="Enabled" VerticalAlignment="Top" Margin="0, 86, 0, 0" HorizontalAlignment="Left">
+            <StackPanel Spacing="12">
+                <GridView x:Name="ArticlesView" x:Load="{x:Bind HomeManager.Profile.IsLoggedIn, Mode=OneWay}" ItemClick="ArticlesView_ItemClick" IsItemClickEnabled="True" ItemContainerStyle="{ThemeResource CardContainer}" ItemsSource="{x:Bind HomeManager.PublishedUserArticles, Mode=OneWay}" SelectionMode="Single">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="classes:PublishedPreviewArticle">
+                        <Grid Height="400" Width="380" CornerRadius="8">
+                            <StackPanel VerticalAlignment="Top">
+                                <Image Source="{x:Bind helpers:UIHelper.SanitizeUri(headerImage), Mode=OneWay}" VerticalAlignment="Top" Height="200" Stretch="Uniform"/>
+                                <TextBlock Margin="24, 8, 12, 4" FontSize="18" MaxHeight="80" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" TextWrapping="WrapWholeWords" Text="{x:Bind title}"/>
+                                <TextBlock Margin="24, 0, 12, 4" Opacity="0.7" MaxHeight="80" FontSize="14" TextTrimming="CharacterEllipsis" TextWrapping="WrapWholeWords" Text="{x:Bind description}"/>
+                                <GridView Margin="8, 0, 0, 4" ItemsSource="{x:Bind tags, Mode=OneWay}" SelectionMode="None" ItemContainerStyle="{ThemeResource CardContainer}">
+                                    <GridView.ItemTemplate>
+                                        <DataTemplate x:DataType="x:String">
+                                            <Grid Padding="4, 2, 4, 2">
+                                                <TextBlock Text="{x:Bind }"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </GridView.ItemTemplate>
+                                </GridView>
                             </StackPanel>
-                            <Grid HorizontalAlignment="Right" VerticalAlignment="Center">
-                                <StackPanel x:Name="Un" x:Load="{x:Bind helpers:UIHelper.Invert(published), Mode=OneWay}" Orientation="Horizontal">
-                                    <glow:GlowBall Color="Red" VerticalAlignment="Center" Width="7" Height="7"/>
-                                    <TextBlock FontSize="12" Opacity="0.8" Text="Unpublished" Margin="12, 0, 0, 0"/>
+                            <Grid Background="{ThemeResource MicaDarkBrush}" VerticalAlignment="Bottom" Padding="24, 0, 12, 0">
+                                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <PersonPicture ProfilePicture="{x:Bind author.iconURL, Mode=OneWay}" Height="30" Width="30"/>
+                                    <StackPanel Margin="8, 4, 4, 4">
+                                        <TextBlock Margin="4, 4, 4, 0" FontWeight="SemiBold" Text="{x:Bind author.displayName}"/>
+                                        <TextBlock Margin="4" Opacity="0.7" VerticalAlignment="Center" FontSize="12" Text="{x:Bind helpers:UIHelper.FormatTime(time), Mode=OneWay}"/>
+                                    </StackPanel>
                                 </StackPanel>
-                                <StackPanel x:Name="P" x:Load="{x:Bind published, Mode=OneWay}" Orientation="Horizontal">
-                                    <glow:GlowBall Color="LightGreen" VerticalAlignment="Center" Width="7" Height="7"/>
-                                    <TextBlock FontSize="12" Opacity="0.8" VerticalAlignment="Center" Text="Published" Margin="12, 0, 0, 0"/>
-                                </StackPanel>
+                                <Grid HorizontalAlignment="Right" VerticalAlignment="Center">
+                                    <StackPanel x:Name="Un" x:Load="{x:Bind helpers:UIHelper.Invert(published), Mode=OneWay}" Orientation="Horizontal">
+                                        <glow:GlowBall Color="Red" VerticalAlignment="Center" Width="7" Height="7"/>
+                                        <TextBlock FontSize="12" Opacity="0.8" Text="Unpublished" Margin="12, 0, 0, 0"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="P" x:Load="{x:Bind published, Mode=OneWay}" Orientation="Horizontal">
+                                        <glow:GlowBall Color="LightGreen" VerticalAlignment="Center" Width="7" Height="7"/>
+                                        <TextBlock FontSize="12" Opacity="0.8" VerticalAlignment="Center" Text="Published" Margin="12, 0, 0, 0"/>
+                                    </StackPanel>
+                                </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-            <GridView.ItemContainerTransitions>
-                <TransitionCollection>
-                    <EntranceThemeTransition IsStaggeringEnabled="True" />
-                    <AddDeleteThemeTransition />
-                    <ContentThemeTransition />
-                </TransitionCollection>
-            </GridView.ItemContainerTransitions>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+                <GridView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition IsStaggeringEnabled="True" />
+                        <AddDeleteThemeTransition />
+                        <ContentThemeTransition />
+                    </TransitionCollection>
+                </GridView.ItemContainerTransitions>
 
-        </GridView>
+            </GridView>
+                <MenuFlyoutSeparator x:Name="Seperator" x:Load="{x:Bind HomeManager.Profile.IsLoggedIn, Mode=OneWay}" Margin="12, 0, 12, 12"/>
+                <GridView x:Name="UnArticlesView" x:Load="{x:Bind HomeManager.Profile.IsLoggedIn, Mode=OneWay}" ItemClick="ArticlesView_ItemClick" IsItemClickEnabled="True" ItemContainerStyle="{ThemeResource CardContainer}" ItemsSource="{x:Bind HomeManager.UnpublishedUserArticles, Mode=OneWay}" SelectionMode="Single">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="classes:PublishedPreviewArticle">
+                        <Grid Height="400" Width="380" CornerRadius="8">
+                            <StackPanel VerticalAlignment="Top">
+                                <Image Source="{x:Bind helpers:UIHelper.SanitizeUri(headerImage), Mode=OneWay}" VerticalAlignment="Top" Height="200" Stretch="Uniform"/>
+                                <TextBlock Margin="24, 8, 12, 4" FontSize="18" MaxHeight="80" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" TextWrapping="WrapWholeWords" Text="{x:Bind title}"/>
+                                <TextBlock Margin="24, 0, 12, 4" Opacity="0.7" MaxHeight="80" FontSize="14" TextTrimming="CharacterEllipsis" TextWrapping="WrapWholeWords" Text="{x:Bind description}"/>
+                                <GridView Margin="8, 0, 0, 4" ItemsSource="{x:Bind tags, Mode=OneWay}" SelectionMode="None" ItemContainerStyle="{ThemeResource CardContainer}">
+                                    <GridView.ItemTemplate>
+                                        <DataTemplate x:DataType="x:String">
+                                            <Grid Padding="4, 2, 4, 2">
+                                                <TextBlock Text="{x:Bind }"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </GridView.ItemTemplate>
+                                </GridView>
+                            </StackPanel>
+                            <Grid Background="{ThemeResource MicaDarkBrush}" VerticalAlignment="Bottom" Padding="24, 0, 12, 0">
+                                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <PersonPicture ProfilePicture="{x:Bind author.iconURL, Mode=OneWay}" Height="30" Width="30"/>
+                                    <StackPanel Margin="8, 4, 4, 4">
+                                        <TextBlock Margin="4, 4, 4, 0" FontWeight="SemiBold" Text="{x:Bind author.displayName}"/>
+                                        <TextBlock Margin="4" Opacity="0.7" VerticalAlignment="Center" FontSize="12" Text="{x:Bind helpers:UIHelper.FormatTime(time), Mode=OneWay}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <Grid HorizontalAlignment="Right" VerticalAlignment="Center">
+                                    <StackPanel x:Name="Un" x:Load="{x:Bind helpers:UIHelper.Invert(published), Mode=OneWay}" Orientation="Horizontal">
+                                        <glow:GlowBall Color="Red" VerticalAlignment="Center" Width="7" Height="7"/>
+                                        <TextBlock FontSize="12" Opacity="0.8" Text="Unpublished" Margin="12, 0, 0, 0"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="P" x:Load="{x:Bind published, Mode=OneWay}" Orientation="Horizontal">
+                                        <glow:GlowBall Color="LightGreen" VerticalAlignment="Center" Width="7" Height="7"/>
+                                        <TextBlock FontSize="12" Opacity="0.8" VerticalAlignment="Center" Text="Published" Margin="12, 0, 0, 0"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+                <GridView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition IsStaggeringEnabled="True" />
+                        <AddDeleteThemeTransition />
+                        <ContentThemeTransition />
+                    </TransitionCollection>
+                </GridView.ItemContainerTransitions>
+
+            </GridView>
+            </StackPanel>
+        </ScrollViewer>
         <controls:ProgressRing  IsActive="{x:Bind HomeManager.LoadArticlesCommand.IsRunning, Mode=OneWay}" Height="40" Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.ZIndex="2"/>
     </Grid>
 </Page>
